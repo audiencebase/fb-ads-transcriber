@@ -28,7 +28,7 @@ Apify.main(async () => {
 
     const requestQueue = await Apify.openRequestQueue();
 
-    await fbDataset.forEach(async ({ item }) => {
+    await fbDataset.forEach(async (item) => {
         const metadata = extractMetadata(item);
         const snapshot = item.snapshot || {};
         const videoUrls = extractVideoUrls(snapshot, maxVideoUrlsPerAd);
@@ -90,14 +90,14 @@ function extractMetadata(item) {
     const snapshot = item.snapshot || {};
     const firstCard = Array.isArray(snapshot.cards) && snapshot.cards[0] ? snapshot.cards[0] : {};
     return {
-        page_name: item.page_name || null,
-        Company_Name: item['Company Name'] || null,
-        Website: item.Website || null,
-        caption: snapshot.caption || null,
-        cta_text: (firstCard.cta_text || snapshot.cta_text) || null,
-        cta_type: (firstCard.cta_type || snapshot.cta_type) || null,
-        title: (firstCard.title || snapshot.title) || null,
-        body: ((firstCard.body && firstCard.body.text) || (snapshot.body && snapshot.body.text)) || null,
+        page_name: item.page_name || '',
+        "Company Name": item['Company Name'] || '',
+        Website: item.Website || '',
+        caption: snapshot.caption || '',
+        cta_text: (firstCard.cta_text || snapshot.cta_text) || '',
+        cta_type: (firstCard.cta_type || snapshot.cta_type) || '',
+        title: (firstCard.title || snapshot.title) || '',
+        body: ((firstCard.body && firstCard.body.text) || (snapshot.body && snapshot.body.text)) || '',
     };
 }
 
