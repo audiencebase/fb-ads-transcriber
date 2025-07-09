@@ -1,0 +1,9 @@
+{
+  "name": "fb-ads-video-transcriber-integration",
+  "version": "0.0.1",
+  "buildTag": "latest",
+  "env": {
+    "APIFY_MEMORY_MBYTES": 2048,
+    "APIFY_TIMEOUT_SECS": 3600
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "fb-ads-video-transcriber-integration",
+  "version": "0.0.1",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "apify": "^3.0.0"
+  }
+}

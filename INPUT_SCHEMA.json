@@ -1,0 +1,106 @@
+{
+  "title": "Facebook Ads Video Transcriber Integration Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "facebookAdsInput": {
+      "title": "Facebook Ads Scraper Input",
+      "type": "object",
+      "description": "Parameters passed directly to the Facebook Ads Scraper actor.",
+      "properties": {
+        "searchTerm": {
+          "title": "Search term or Page ID",
+          "type": "string",
+          "description": "Keyword or page identifier to search for.",
+          "editor": "textfield"
+        },
+        "searchType": {
+          "title": "Search type",
+          "type": "string",
+          "enum": ["keyword", "page"],
+          "default": "keyword",
+          "description": "Defines whether 'searchTerm' is a keyword or a page ID."
+        },
+        "adReachedCountries": {
+          "title": "Ad reached countries",
+          "type": "array",
+          "description": "ISO country codes for the audience location.",
+          "editor": "textfield",
+          "items": {"type": "string"}
+        },
+        "publisherPlatforms": {
+          "title": "Publisher platforms",
+          "type": "array",
+          "description": "Platforms where the ads were served (e.g., facebook, instagram).",
+          "items": {"type": "string"}
+        },
+        "languages": {
+          "title": "Ad languages",
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Languages of the ads."
+        },
+        "maxAds": {
+          "title": "Max ads",
+          "type": "integer",
+          "default": 50,
+          "description": "Maximum number of ads to scrape."
+        }
+      },
+      "additionalProperties": true
+    },
+    "openaiApiKey": {
+      "title": "OpenAI API Key",
+      "type": "string",
+      "editor": "textfield",
+      "description": "API key for the OpenAI transcription service.",
+      "prefill": "",
+      "pattern": ".*",
+      "secret": true,
+      "minLength": 1
+    },
+    "openaiModel": {
+      "title": "OpenAI Model",
+      "type": "string",
+      "enum": ["gpt-4o-mini-transcribe", "whisper-1"],
+      "default": "gpt-4o-mini-transcribe"
+    },
+    "openaiTranscriptionLanguage": {
+      "title": "Transcription language",
+      "type": "string",
+      "default": "es",
+      "description": "Language used for transcription of the audio content."
+    },
+    "openaiTranscriptionPrompt": {
+      "title": "Transcription prompt",
+      "type": "string",
+      "description": "Optional prompt sent to the transcriber actor.",
+      "editor": "textfield"
+    },
+    "openaiTranscriptionTemperature": {
+      "title": "Transcription temperature",
+      "type": "string",
+      "default": "0.0",
+      "description": "OpenAI temperature parameter for transcription."
+    },
+    "transcriberMaxConcurrentTasks": {
+      "title": "Transcriber max concurrent tasks",
+      "type": "integer",
+      "default": 5,
+      "description": "Maximum number of concurrent tasks for the transcriber actor."
+    },
+    "transcriberMaxRetries": {
+      "title": "Transcriber max retries",
+      "type": "integer",
+      "default": 3,
+      "description": "Maximum number of retries for the transcriber actor."
+    },
+    "maxVideoUrlsPerAd": {
+      "title": "Max video URLs per ad",
+      "type": "integer",
+      "default": 1,
+      "description": "Limits the number of video URLs extracted and sent for transcription from each individual Facebook Ad entry. Set to 0 for no limit (all videos will be processed)."
+    }
+  },
+  "required": ["facebookAdsInput", "openaiApiKey"]
+}
