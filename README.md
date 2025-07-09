@@ -1,10 +1,8 @@
-# Facebook Ads Video Transcriber Integration (Concise Metadata)
-
-This Apify Actor scrapes Facebook video ads, extracts their audio, transcribes it using OpenAI, and saves the transcription along with selected key metadata for streamlined analysis.
+This Apify Actor acts as a connector between the Facebook Ads Scraper and the Audio and Video Transcriber. It orchestrates scraping of Facebook ads, sends each ad's video to the transcriber, and saves the transcription together with selected key ad metadata for streamlined analysis.
 
 ## Features
 
-- **Combines scraping and transcription** of Facebook video ads
+- **Orchestrates scraping and transcription** of Facebook video ads
 - **Extracts specific ad metadata** only
 - **Configurable ad search and video selection**
 - **OpenAI powered** transcription
@@ -14,7 +12,7 @@ This Apify Actor scrapes Facebook video ads, extracts their audio, transcribes i
 
 ## How it Works
 
-1. Scrapes Facebook Ads using the Facebook Ads Scraper actor.
+1. Calls the Facebook Ads Scraper actor to gather ad data.
 2. Extracts video URLs and essential details from each ad.
 3. Sends videos to the Audio and Video Transcriber actor.
 4. Combines transcription results with the selected ad metadata and outputs them.
@@ -40,7 +38,7 @@ The actor stores each processed ad in the default dataset with the following JSO
 ```json
 {
   "page_name": "String | Null",
-  "Company_Name": "String | Null",
+  "Company Name": "String | Null",
   "Website": "String | Null",
   "caption": "String | Null",
   "cta_text": "String | Null",
@@ -59,7 +57,7 @@ The actor stores each processed ad in the default dataset with the following JSO
 | Field | Type | Description |
 |-------|------|-------------|
 | `page_name` | String\|Null | Name of the Facebook page posting the ad. |
-| `Company_Name` | String\|Null | Company name associated with the ad (if available). |
+| `Company Name` | String\|Null | Company name associated with the ad (if available). |
 | `Website` | String\|Null | Website link from the ad details. |
 | `caption` | String\|Null | Caption text from the ad snapshot. |
 | `cta_text` | String\|Null | Call to action text. |
@@ -74,9 +72,9 @@ The actor stores each processed ad in the default dataset with the following JSO
 ## Setup / Deployment on Apify
 
 1. Create a new actor on Apify and upload the files from this repository.
-2. **Important:** Open `main.js` and replace the placeholder `FACEBOOK_ADS_SCRAPER_ACTOR_ID` and `VIDEO_TRANSCRIBER_ACTOR_ID` with your actual Apify Actor IDs.
+2. The integration is preconfigured to use the Facebook Ads Scraper actor (`3853UUZQG6pjjdw11`) and the Video Transcriber actor (`LrpJOofkgRAe9PjY4`). Edit `main.js` only if you wish to use different actors.
 3. Build the actor on the Apify platform.
-4. Run the actor with your desired input parameters.
+4. Run the actor with your desired input parameters. All dependencies are installed automatically during the build.
 
 ## Important Notes / Limitations
 
@@ -87,4 +85,3 @@ The actor stores each processed ad in the default dataset with the following JSO
 ## Support / Contact
 
 This template is provided as-is. For issues or questions, please reach out via your usual Apify support channels or open an issue in your repository.
-
